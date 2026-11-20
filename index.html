@@ -1,19 +1,32 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#101828"><meta name="referrer" content="strict-origin-when-cross-origin"><meta http-equiv="Permissions-Policy" content="camera=(self)"><meta name="description" content="QR Studio — a polished QR code generator with local-first processing."><link rel="icon" type="image/svg+xml" href="logo.svg">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self';">
-  <title>QR Studio — Professional QR Generator</title><link rel="stylesheet" href="style.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0/lib/qr-code-styling.js" integrity="sha384-K7D1ZVqZVEPBKpQrjKR0/pDcFaWHQPzUBKNY5k8RRX5aGtd4WGHXEnO0qso4YowQ" crossorigin="anonymous"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha384-JcnsjUPPylna1s1fvi1u12X5qjY5OL56iySh75FdtrwhO/SWXgMjoVqcKyIIWOLk" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js" integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG" crossorigin="anonymous"></script>
-  <script defer src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js" integrity="sha384-c9d8RFSL+u3exBOJ4Yp3HUJXS4znl9f+z66d1y54ig+ea249SpqR+w1wyvXz/lk+" crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101828">
+  <meta name="color-scheme" content="light dark">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'">
+  <title>QR Studio — Professional QR Code Generator</title>
+  <meta name="description" content="QR Studio is a free, browser-based QR code generator and scanner. Create branded QR codes for links, Wi-Fi, contacts and more — your content never leaves your device.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="QR Studio — Professional QR Code Generator">
+  <meta property="og:description" content="Create, customise, scan and export QR codes in your browser. No account, no uploads.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="stylesheet" href="style.css">
+  <script src="theme.js"></script>
+  <script defer src="vendor/qr-code-styling.js"></script>
+  <script defer src="vendor/jspdf.umd.min.js"></script>
+  <script defer src="vendor/jszip.min.js"></script>
+  <script defer src="vendor/html5-qrcode.min.js"></script>
   <script defer src="app.js"></script>
 </head>
 <body>
+<a class="skip-link" href="#generator">Skip to content</a>
+<noscript><div class="noscript">QR Studio needs JavaScript to create and scan QR codes. Please enable JavaScript and reload.</div></noscript>
 <header class="topbar"><a class="brand" href="index.html"><img class="brand-mark" src="logo.svg" alt="" width="42" height="42"><span>QR <b>Studio</b><small>PROFESSIONAL QR WORKSPACE</small></span></a>
-<nav><a href="#generator">Generator</a><a href="#bulk">Bulk tools</a><a href="#scanner">Scanner</a><a href="privacy.html">Privacy</a><a href="about.html">About</a><button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode" title="Toggle theme">◐</button></nav></header>
+<nav aria-label="Primary"><a href="#generator">Generator</a><a href="#bulk">Bulk tools</a><a href="#scanner">Scanner</a><a href="privacy.html">Privacy</a><a href="about.html">About</a><button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode" title="Toggle theme">◐</button></nav></header>
 <main class="wrap">
 <section class="hero"><span class="eyebrow">CREATE · CUSTOMIZE · EXPORT</span><h1>QR codes, <em>beautifully made.</em></h1><p>Create branded QR codes for links, contacts, Wi-Fi and more. Customize the look, export print-ready files and manage your recent work.</p><div class="hero-pills"><span>✦ No account required</span><span>✓ Browser-based processing</span><span>↗ Multiple export formats</span></div></section>
 <section id="generator" class="workspace">
@@ -23,19 +36,19 @@
 <div class="section-rule"><span>Design & branding</span><small>PERSONALIZE YOUR CODE</small></div>
 <div class="two-col"><div><label for="fg">Start color</label><input id="fg" type="color" value="#18243b" class="color-input"></div><div><label for="bg">Background</label><input id="bg" type="color" value="#ffffff" class="color-input"></div></div>
 <div class="two-col"><div><label for="gradientEnd">Gradient end</label><input id="gradientEnd" type="color" value="#6c5ce7" class="color-input"></div><div><label for="size">Export size</label><select id="size"><option value="256">256 px</option><option value="512" selected>512 px</option><option value="1024">1024 px</option><option value="1600">1600 px</option></select></div></div>
-<div class="two-col"><div><label for="dots">QR pattern</label><select id="dots"><option value="rounded">Rounded</option><option value="dots">Dots</option><option value="classy">Classy</option><option value="square">Square</option><option value="extra-rounded">Extra rounded</option></select></div><div><label for="level">Error correction</label><select id="level"><option value="Q">Quartile (Q)</option><option value="H" selected>High (H)</option><option value="M">Medium (M)</option></select></div></div>
+<div class="two-col"><div><label for="dots">QR pattern</label><select id="dots"><option value="rounded">Rounded</option><option value="dots">Dots</option><option value="classy">Classy</option><option value="square">Square</option><option value="extra-rounded">Extra rounded</option></select></div><div><label for="level">Error correction</label><select id="level"><option value="Q">Quartile (Q)</option><option value="H" selected>High (H)</option><option value="M">Medium (M)</option><option value="L">Low (L)</option></select></div></div>
 <label class="check"><input id="gradient" type="checkbox" checked> Use two-color gradient</label>
 <div class="upload-row"><div><label for="logo">Center logo <span class="muted">(optional)</span></label><input id="logo" type="file" accept="image/png,image/jpeg,image/webp"></div><button id="removeLogo" class="button subtle small" type="button">Remove</button></div><p class="microcopy">Use a square, transparent PNG for best results. Keep the logo small for reliable scanning.</p>
-<button id="generate" class="button primary full">Generate QR code <span>→</span></button><p id="message" class="message" aria-live="polite">Enter your content to generate a QR code.</p>
+<button id="generate" class="button primary full" type="button">Generate QR code <span>→</span></button><p id="message" class="message" aria-live="polite">Enter your content to generate a QR code.</p>
 </div>
-<div class="panel preview-panel"><div class="panel-heading"><div><span class="step">02</span><div><h2>Live preview</h2><p>Your design appears here.</p></div></div><span class="preview-tag">LIVE CANVAS</span></div>
+<div class="panel preview-panel"><div class="panel-heading"><div><span class="step">02</span><div><h2>Preview</h2><p>Your design appears here.</p></div></div><span class="preview-tag">PREVIEW</span></div>
 <div class="qr-stage"><div id="qrcode"><div class="placeholder"><span>▦</span><b>Your QR code</b><small>Preview will appear here</small></div></div></div>
-<div class="export-grid"><button id="downloadPng" class="button primary" disabled>↓ PNG</button><button id="downloadSvg" class="button secondary" disabled>↓ SVG</button><button id="downloadPdf" class="button secondary" disabled>↓ PDF</button></div>
-<div class="preview-meta"><span>High error correction</span><span>Scan before printing</span></div>
+<div class="export-grid"><button id="downloadPng" type="button" class="button primary" disabled>↓ PNG</button><button id="downloadSvg" type="button" class="button secondary" disabled>↓ SVG</button><button id="downloadPdf" type="button" class="button secondary" disabled>↓ PDF</button></div>
+<div class="preview-meta"><span id="metaLevel">High error correction</span><span>Scan before printing</span></div>
 </div></section>
-<section id="bulk" class="panel utility-panel"><div class="utility-heading"><div><span class="step">03</span><div><h2>Bulk QR generator</h2><p>Create a batch of QR codes and download them together.</p></div></div><span class="utility-icon">▤</span></div><label for="bulkInput">One item per line</label><textarea id="bulkInput" rows="4" placeholder="https://example.com\nhttps://example.org\nContact: hello@example.com"></textarea><div class="inline-actions"><button id="bulkGenerate" class="button primary">Generate batch</button><button id="bulkDownload" class="button secondary" disabled>Download ZIP</button><span id="bulkStatus" class="muted" aria-live="polite">Up to 50 items per batch.</span></div><div id="bulkResults" class="bulk-results"></div></section>
-<section id="scanner" class="panel utility-panel"><div class="utility-heading"><div><span class="step">04</span><div><h2>QR scanner</h2><p>Scan a QR code using your device camera.</p></div></div><span class="utility-icon">⌗</span></div><div class="scanner-layout"><div><div id="reader" class="reader"><span>Camera preview will appear here</span></div><div class="inline-actions"><button id="startScan" class="button primary">Start camera</button><button id="stopScan" class="button secondary" disabled>Stop camera</button></div></div><div class="scan-output"><label for="scanResult">Scanned content</label><textarea id="scanResult" rows="5" readonly placeholder="The scanned result will appear here."></textarea><button id="copyScan" class="button secondary" disabled>Copy result</button><p id="scanStatus" class="microcopy" aria-live="polite">Camera permission is requested only when you start scanning. HTTPS or localhost is required.</p></div></div></section>
-<section class="panel history-panel"><div class="utility-heading"><div><span class="step">05</span><div><h2>Recent QR history</h2><p>Saved in this browser on this device. Wi-Fi QR payloads are not saved.</p></div></div><button id="clearHistory" class="button subtle small">Clear history</button></div><div id="historyList" class="history-list"><p class="empty-state">Your generated QR codes will appear here.</p></div></section>
+<section id="bulk" class="panel utility-panel"><div class="utility-heading"><div><span class="step">03</span><div><h2>Bulk QR generator</h2><p>Create a batch of QR codes and download them together.</p></div></div><span class="utility-icon">▤</span></div><label for="bulkInput">One item per line</label><textarea id="bulkInput" rows="4" placeholder="https://example.com&#10;https://example.org&#10;hello@example.com"></textarea><div class="inline-actions"><button id="bulkGenerate" type="button" class="button primary">Generate batch</button><button id="bulkDownload" type="button" class="button secondary" disabled>Download ZIP</button><span id="bulkStatus" class="muted" aria-live="polite">Up to 50 items per batch.</span></div><div id="bulkResults" class="bulk-results"></div></section>
+<section id="scanner" class="panel utility-panel"><div class="utility-heading"><div><span class="step">04</span><div><h2>QR scanner</h2><p>Scan a QR code using your device camera.</p></div></div><span class="utility-icon">⌗</span></div><div class="scanner-layout"><div><div id="reader" class="reader"><span>Camera preview will appear here</span></div><div class="inline-actions"><button id="startScan" type="button" class="button primary">Start camera</button><button id="stopScan" type="button" class="button secondary" disabled>Stop camera</button></div></div><div class="scan-output"><label for="scanResult">Scanned content</label><textarea id="scanResult" rows="5" readonly placeholder="The scanned result will appear here."></textarea><button id="copyScan" type="button" class="button secondary" disabled>Copy result</button><p id="scanStatus" class="microcopy" aria-live="polite">Camera permission is requested only when you start scanning. HTTPS or localhost is required. Nothing is uploaded.</p></div></div></section>
+<section class="panel history-panel"><div class="utility-heading"><div><span class="step">05</span><div><h2>Recent QR history</h2><p>Saved in this browser on this device. Wi-Fi and contact-card codes are never saved.</p></div></div><button id="clearHistory" type="button" class="button subtle small">Clear history</button></div><div id="historyList" class="history-list"><p class="empty-state">Your generated QR codes will appear here.</p></div></section>
 <section class="notice"><b>Use QR codes responsibly</b><p>QR codes are not encrypted. Avoid embedding passwords, financial details or other sensitive information. Always verify a destination before opening it.</p></section>
-</main><footer><span>© <span id="year"></span> QR Studio · Created by SAAD SHEIKH</span><span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="about.html">About</a> · <a href="README.md">Documentation</a></span></footer>
+</main><footer><span>© <span id="year"></span> QR Studio · Created by SAAD SHEIKH</span><span><a href="index.html">Home</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="about.html">About</a></span></footer>
 </body></html>

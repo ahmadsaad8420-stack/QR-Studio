@@ -13,3 +13,25 @@ button{font-family:inherit}
 .doc a:not(.back){color:var(--accent)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 @media(max-width:600px){.topbar{gap:10px;flex-wrap:wrap}.topbar nav{width:100%;justify-content:flex-start}.topbar nav a{font-size:11px}.doc{margin:30px auto;padding:0 16px 48px}.doc h1{font-size:32px}}
+
+/* ---- Professional polish: readability, states, accessibility ---- */
+.skip-link{position:absolute;left:-999px;top:8px;z-index:100;background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;font-size:13px}
+.skip-link:focus{left:8px}
+.noscript{background:#fff3cd;color:#5c4400;padding:12px 20px;text-align:center;font-size:14px}
+/* minimum readable sizes (previously 7–11px in places) */
+.brand small{font-size:10px}
+.status-pill,.preview-tag{font-size:10px}
+.section-rule small,.history-copy b,.history-copy small{font-size:11px}
+.panel-heading p,.utility-heading p,.muted,.microcopy,.message,.bulk-results,.preview-meta,.notice p,footer,.history-copy span,.hero-pills span{font-size:12px}
+.notice b,label,.check{font-size:13px}
+.topbar nav a,footer a{font-size:14px}
+:root{--muted:#5b677b;--warn:#8a5a00;--bad:#b42318}
+:root[data-theme="dark"]{--muted:#a6b2c6;--warn:#f2b84b;--bad:#ff8a80}
+.message[data-kind="ok"]{color:var(--good)}
+.message[data-kind="warn"],.microcopy.warn{color:var(--warn)}
+.message[data-kind="error"]{color:var(--bad)}
+.qr-stage.stale #qrcode,#qrcode.stale{opacity:.35;filter:grayscale(1);transition:opacity .2s}
+.button:disabled{opacity:.5}
+.history-panel .button:disabled{opacity:.35}
+@media(max-width:600px){.topbar nav a{font-size:13px}.brand small{font-size:9px}footer{font-size:12px}}
+.status-pill,.preview-tag{white-space:nowrap;flex:none}
